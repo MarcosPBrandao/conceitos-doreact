@@ -12,19 +12,17 @@ function App() {
   async function handleAddRepository() {
     // TODO
     const response = await api.post('projects', {
-      title: `Novo projeto ${Date.now()}`,
+      title: `Novo projdesafio ${Date.now()}`,
       owner: "Diego Fernandes"  
     })
     const project = response.data;
     setProjects([...projects, project ]);
   }
-
+  //const repositories = [];
   async function handleRemoveRepository(id) {
     // TODO
-    // precisa dar F5 apos delecao
-    await api.delete('/projects/'+id);
-    console.log('Removido '+id);
-    return;
+    await api.delete(`/projects/${id}`);
+    setProjects(projects.filter((project) => project.id !== id));
   }
 
   return (
